@@ -2,7 +2,7 @@
     "targets":[{
         "isStage":true,
         "name":"Stage",
-        "variables":{"`jEk@4|i[#Fk?(8x)AV.-my variable":["my variable",0]},
+        "variables":{},
         "lists":{},
         "broadcasts":{},
         "blocks":{},
