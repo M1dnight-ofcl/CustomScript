@@ -1,0 +1,63 @@
+# when a broadcast is done
+when ("message") run {
+    # code here
+}
+
+# init variables (using nesting)
+new => {
+    # $ = vars, % = list
+    $newVar
+    global $newVar2
+    local $newVar3
+}
+
+when (scratch.greenflag) run
+    # create new sprite
+    new sprite Sprite01 {
+        pos: (0, 0),
+        dir: 90deg,
+        costumes: [ "./path", "./path2" ],
+        sfx: [ "./path", "./path2" ],
+        show: true
+    }
+    # indivisual
+    Sprite01.move 10
+    Sprite01.rotate left 10deg
+
+    # nested
+    Sprite01 => {
+        move 10
+        rotate left 10deg
+    }
+
+    # functions
+    new custom_block Function1($var1:bool, $var2:input) 
+        Sprite01.say $var1 $var2
+    end
+
+    Sprite01.hide
+
+    broadcast > "message" # normal broadcast
+    broadcast ... > "message" # broadcast and wait
+
+    if (bool) then
+        # stuff 
+    end else if (bool) then
+        # stuff 
+    end else do
+        # stuff 
+    end
+
+    while (bool) do
+        # stuff
+    end
+    repeat until (bool)
+        # stuff
+    end
+    repeat 10
+        # stuff
+    end
+    forever
+        # stuff
+    end
+end

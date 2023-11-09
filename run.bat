@@ -1,0 +1,1 @@
+python3 ./compiler/compiler.py ./test.cs1
