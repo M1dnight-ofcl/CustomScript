@@ -24,6 +24,10 @@ class Compiler:
             if not len(lineSplit) < 1:
                 try:
                     # print(f'+ > line {i+1}: {lineSplit}')
+                    ctkn=0
+                    for token in lineSplit:
+                        lineSplit[ctkn]=token.translate({ord('('): None, ord(')'): None})
+                        ctkn=ctkn+1
                     if lineSplit[0][0] == "#": pass
                     else: self.fileLinesSplit.append(lineSplit)
                 except Exception as e: del self.fileLines[i]
@@ -31,6 +35,9 @@ class Compiler:
             else: pass
             i=i+1
         print(*self.fileLinesSplit, sep='\n')
+        for lineContentsSplit in self.fileLinesSplit :
+            if lineContentsSplit[0] == "when":
+                pass
 
     def runInitialCheck(self):
         if len(sys.argv)-1 < 2: raise AttributeError("Please specify A file to compile")

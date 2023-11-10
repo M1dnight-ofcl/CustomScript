@@ -1,7 +1,7 @@
 # when a broadcast is done
-when ("message") run {
+when ("message 1") run 
     # code here
-}
+end
 
 # init variables (using nesting)
 new => {
@@ -11,7 +11,7 @@ new => {
     local $newVar3
 }
 
-when (scratch.greenflag) run
+when (GreenFlag) run
     # create new sprite
     new sprite Sprite01 {
         pos: (0, 0),
@@ -39,25 +39,4 @@ when (scratch.greenflag) run
 
     broadcast > "message" # normal broadcast
     broadcast ... > "message" # broadcast and wait
-
-    if (bool) then
-        # stuff 
-    end else if (bool) then
-        # stuff 
-    end else do
-        # stuff 
-    end
-
-    while (bool) do
-        # stuff
-    end
-    repeat until (bool)
-        # stuff
-    end
-    repeat 10
-        # stuff
-    end
-    forever
-        # stuff
-    end
 end
