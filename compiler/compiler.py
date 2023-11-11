@@ -1,5 +1,6 @@
 import sys, os, pathlib, shlex, shutil
 from time import sleep
+from compileToSB3 import compileSB3Project
 
 class Compiler:
     def __init__(self):
@@ -10,7 +11,7 @@ class Compiler:
         self.filePath = sys.argv[1]
         self.file = open(self.filePath, "r")
         self.beginParsingFile(self.file)
-        # self.compileSB3Project()
+        compileSB3Project([sys.argv[1], sys.argv[2]])
 
     def beginParsingFile(self, file):
         print("> initiliazing file parse")
@@ -50,12 +51,5 @@ class Compiler:
             raise TypeError(f"File type ({flExt}) invalid")
         print('> checking file existance')
         if not os.path.exists(file):  raise FileNotFoundError(f"File {pathlib.Path(file).absolute()} does not exist")
-
-    def compileSB3Project(self):
-        print("> intializing compile to .sb3")
-        shutil.make_archive(sys.argv[2], 'zip', pathlib.Path(sys.argv[1]).parent.absolute())
-        p=pathlib.Path(pathlib.Path(pathlib.Path(sys.argv[1]).parent.absolute().parts[-1]).parts[-1]+".zip")
-        p.rename(p.with_suffix('.sb3'))
-        print("> successfully compiled")
 
 Compiler()
