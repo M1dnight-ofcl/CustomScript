@@ -1,1 +1,1 @@
-python3 ./compiler/compiler.py ./test/test.cs1 test
+python3 -m pycs1 ./test/test.cs1 Test
