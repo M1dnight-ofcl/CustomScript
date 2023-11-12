@@ -1,4 +1,4 @@
-import sys, os, pathlib, shlex, shutil
+import sys, os, pathlib, shlex, shutil, json
 from time import sleep
 from .scripts import compileToSB3 as c
 import hashlib
@@ -35,6 +35,32 @@ class Compiler:
             i=i+1
         print("✓")
         # print(*self.fileLinesSplit, sep='\n')
+        print('+ > creating json template', end=": ")
+        self.projectjson = {
+            "targets":[{
+                "isStage":True,
+                "name":"Stage",
+                "variables":{},
+                "lists":{},
+                "broadcasts":{},
+                "blocks":{},
+                "comments":{},
+                "currentCostume":0,
+                "costumes":[
+                    {}
+                ],
+                "sounds":[
+                    {}
+                ],
+                "volume":100,
+                "layerOrder":0,
+                "tempo":60,
+                "videoTransparency":50,
+                "videoState":"on",
+                "textToSpeechLanguage":None
+            }]
+        }
+        print("✓")
         print('+ > begining file compile to json; status', end=": ")
         for lineContentsSplit in self.fileLinesSplit :
             if lineContentsSplit[0] == "when":
