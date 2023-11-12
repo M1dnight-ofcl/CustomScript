@@ -37,32 +37,40 @@ class Compiler:
         # print(*self.fileLinesSplit, sep='\n')
         print('+ > creating json template', end=": ")
         self.projectjson = {
-            "targets":[{
-                "isStage":True,
-                "name":"Stage",
-                "variables":{},
-                "lists":{},
-                "broadcasts":{},
-                "blocks":{},
-                "comments":{},
-                "currentCostume":0,
-                "costumes":[
-                    {}
-                ],
-                "sounds":[
-                    {}
-                ],
-                "volume":100,
-                "layerOrder":0,
-                "tempo":60,
-                "videoTransparency":50,
-                "videoState":"on",
-                "textToSpeechLanguage":None
-            }]
+            "targets":[
+                {
+                    "isStage":True,
+                    "name":"Stage",
+                    "variables":{},
+                    "lists":{},
+                    "broadcasts":{},
+                    "blocks":{},
+                    "comments":{},
+                    "currentCostume":0,
+                    "costumes":[
+                        {}
+                    ],
+                    "sounds":[
+                        {}
+                    ],
+                    "volume":100,
+                    "layerOrder":0,
+                    "tempo":60,
+                    "videoTransparency":50,
+                    "videoState":"on",
+                    "textToSpeechLanguage":None
+                }
+            ]
         }
         print("✓")
         print('+ > begining file compile to json; status', end=": ")
         for lineContentsSplit in self.fileLinesSplit :
+            if lineContentsSplit[0] == "new":
+                if lineContentsSplit[1] == "sprite":
+                    self.projectjson["targets"].append({
+                        "isStage":False,
+                        "name":lineContentsSplit[2],
+                    })
             if lineContentsSplit[0] == "when":
                 pass
         print("✓")

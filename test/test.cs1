@@ -11,15 +11,16 @@ new => {
     local $newVar3
 }
 
+# create new sprite
+new sprite Sprite01 {
+    pos: (0, 0),
+    dir: 90deg,
+    costumes: [ "./path", "./path2" ],
+    sfx: [ "./path", "./path2" ],
+    show: true
+}
+
 when (GreenFlag) run
-    # create new sprite
-    new sprite Sprite01 {
-        pos: (0, 0),
-        dir: 90deg,
-        costumes: [ "./path", "./path2" ],
-        sfx: [ "./path", "./path2" ],
-        show: true
-    }
     # indivisual
     Sprite01.move 10
     Sprite01.rotate left 10deg
